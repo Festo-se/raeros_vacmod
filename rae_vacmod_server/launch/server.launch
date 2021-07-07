@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="rae_vacmod_server" name="rae_vacmod_server" type="rae_vacmod_server.py" output="screen" respawn="true" />
+</launch>
