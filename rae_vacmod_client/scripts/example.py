@@ -3,6 +3,7 @@
 from raerospy_vacmod_client.VacmodClient import VacmodClient
 import time
 import rospy
+
 # For callback return of vacuum state
 def sucked_cb():
     print("Sucked callback was called")
@@ -12,10 +13,8 @@ def lost_cb():
 
 
 if __name__ == "__main__":
-
+    rospy.init_node()
     v = VacmodClient()
-    
-
 
     while True:
         v.suck(sucked_cb,lost_cb)
