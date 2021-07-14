@@ -6,7 +6,6 @@ class VacmodClient(object):
     def __init__(self):
         rospy.wait_for_service("/rae_vacmod_server/Suck")
         self.__current_vacstate = None
-        rospy.init_node('vacmod_client', anonymous=True)
         rospy.Subscriber("/vacstate", vacstate, self.__vacstate_update_callback)
         self.__suck_handler = rospy.ServiceProxy("/rae_vacmod_server/Suck", suck)
         self.__release_handler = rospy.ServiceProxy("/rae_vacmod_server/Release", release)
@@ -23,6 +22,7 @@ class VacmodClient(object):
             self.__lost_cb()        
 
     def suck(self, sucked_cb=None,lost_cb=None):
+        rospy.loginfo("Vacuum-Module: suck")
         self.__suck_handler()
         
         if sucked_cb:
@@ -33,6 +33,7 @@ class VacmodClient(object):
             
     
     def release(self):
+        rospy.loginfo("Vacuum-Module release")
         self.__current_vastate = "OFF"
         self.__release_handler()
 
