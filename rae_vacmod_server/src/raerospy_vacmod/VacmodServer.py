@@ -1,7 +1,9 @@
-from raepy import vacmod
+from raepy import VacuumModule
 import rospy
 from rae_vacmod_messages.srv import suck, release
 from rae_vacmod_messages.msg import vacstate
+
+vacmod = VacuumModule()
 
 class VacmodServer(object):
     def __init__(self):
@@ -11,7 +13,6 @@ class VacmodServer(object):
 
     def __suck_service_request(self,req):
         vacmod.suck(self.__sucked_handler,self.__lost_handler)
-        #vacmod.suck()
         return True
 
     def __release_service_request(self,req):
@@ -19,11 +20,9 @@ class VacmodServer(object):
         return True
 
     def __sucked_handler(self,state):
-        #print(state)
         self.__statepublisher.publish("SUCKED")
 
     def __lost_handler(self,state):
-        #print(state)
         self.__statepublisher.publish("LOST")
 
 
