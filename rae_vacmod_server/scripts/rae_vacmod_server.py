@@ -2,7 +2,7 @@
 
 import rospy
 
-from raerospy_vacmod.VacmodServer import VacmodServer
+from raerospy_vacmod import VacmodServer
 
 
 if __name__ == "__main__":

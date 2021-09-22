@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-from raerospy_vacmod_client.VacmodClient import VacmodClient
+from raerospy_vacmod_client import VacmodClient
 import time
 import rospy
 
@@ -13,8 +13,10 @@ def lost_cb():
 
 
 if __name__ == "__main__":
-    rospy.init_node()
+    rospy.init_node("Vacmod_client")
     v = VacmodClient()
+    v.warmup()
+    time.sleep(1)
 
     while True:
         v.suck(sucked_cb,lost_cb)
