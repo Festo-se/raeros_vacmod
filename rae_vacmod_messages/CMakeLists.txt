@@ -58,6 +58,7 @@ add_message_files(
    FILES
    suck.srv
    release.srv
+   warmup.srv
  )
 
 ## Generate actions in the 'action' folder
